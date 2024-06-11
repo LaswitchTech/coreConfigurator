@@ -1,4 +1,4 @@
-<p align="center">![GitHub repo logo](/dist/img/logo.png)</p>
+<p align="center"><img src="dist/img/logo.png" /></p>
 
 # coreConfigurator
 ![License](https://img.shields.io/github/license/LaswitchTech/coreConfigurator?style=for-the-badge)
