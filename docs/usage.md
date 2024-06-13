@@ -11,7 +11,7 @@ use LaswitchTech\coreConfigurator\Configurator;
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate coreConfigurator
+// Initiate Configurator
 $Configurator = new Configurator();
 ```
 
@@ -19,10 +19,13 @@ $Configurator = new Configurator();
 `Configurator` provides the following methods to manage configuration files:
 
 - [add()](methods/Configurator/add.md)
-- [get()](methods/Configurator/get.md)
-- [set()](methods/Configurator/set.md)
+- [check()](methods/Configurator/check.md)
 - [delete()](methods/Configurator/delete.md)
+- [get()](methods/Configurator/get.md)
+- [list()](methods/Configurator/list.md)
+- [path()](methods/Configurator/path.md)
 - [root()](methods/Configurator/root.md)
+- [set()](methods/Configurator/set.md)
 
 ## Initiate Form
 To use `Form`, simply include the Form.php file and create a new instance of the `Form` class.
@@ -31,23 +34,21 @@ To use `Form`, simply include the Form.php file and create a new instance of the
 
 // Import Configurator class into the global namespace
 // These must be at the top of your script, not inside a function
-use LaswitchTech\coreConfigurator\Configurator;
+use LaswitchTech\coreConfigurator\Form;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate coreConfigurator
-$Configurator = new Configurator();
+// Initiate Form
+$Form = new Form();
 ```
 
 ### Methods
 `Form` provides the following methods to manage configuration files:
 
-- [add()](methods/Form/add.md)
 - [get()](methods/Form/get.md)
+- [list()](methods/Form/list.md)
 - [set()](methods/Form/set.md)
-- [delete()](methods/Form/delete.md)
-- [root()](methods/Form/root.md)
 
 ## Initiate Command for coreCLI integration
 To use `Command`, simply create `Command/ConfiguratorCommand.php` file and extend a new instance of the `Command` class.
@@ -84,8 +85,14 @@ class ConfiguratorController extends Controller {}
 ### Methods
 `Controller` provides the following methods to manage configuration files:
 
-- [setAction()](methods/Controller/setAction.md)
 - [getAction()](methods/Controller/getAction.md)
+- [getRouterAction()](methods/Controller/getRouterAction.md)
+- [listAction()](methods/Controller/listAction.md)
+- [listRouterAction()](methods/Controller/listRouterAction.md)
+- [parametersAction()](methods/Controller/parametersAction.md)
+- [parametersRouterAction()](methods/Controller/parametersRouterAction.md)
+- [setAction()](methods/Controller/setAction.md)
+- [setRouterAction()](methods/Controller/setRouterAction.md)
 
 ## Adding the Configurator View
 To use the included view file, simply add a route pointing to the view file (`vendor/laswitchtech/core-configurator/View/configurator.php`).
