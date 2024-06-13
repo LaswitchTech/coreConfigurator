@@ -214,6 +214,12 @@ class Configurator {
         return $this;
     }
 
+    public function check($File){
+
+        // Check if configuration file without loading it
+        return is_file($this->RootPath . self::ConfigDir . '/' . $File . self::Extension);
+    }
+
     /**
      * Get a Root Path.
      *
