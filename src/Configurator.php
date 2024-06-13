@@ -5,6 +5,7 @@ namespace LaswitchTech\coreConfigurator;
 
 // Import additionnal classes into the global namespace
 use Exception;
+use ReflectionClass;
 
 class Configurator {
 
@@ -184,5 +185,36 @@ class Configurator {
 
         // Return
         return $this->RootPath;
+    }
+
+    /**
+     * Get a Class File Path.
+     *
+     * @param  string  $className
+     * @return string $filePath
+     */
+    public function path($className) {
+
+        // Check if the Composer autoload file is included
+        $autoloadPath = $this->root() . '/vendor/autoload.php';
+        if (!file_exists($autoloadPath)) {
+            throw new Exception("Composer autoload file not found.");
+        }
+
+        // Include the Composer autoload file
+        require_once $autoloadPath;
+
+        // Check if the class exists
+        if (!class_exists($className)) {
+
+            // Throw an exception
+            throw new Exception("Class $className does not exist.");
+        }
+
+        // Use ReflectionClass to get the file path
+        $reflector = new ReflectionClass($className);
+        $filePath = $reflector->getFileName();
+
+        return $filePath;
     }
 }
