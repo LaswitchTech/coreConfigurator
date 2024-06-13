@@ -5,6 +5,7 @@ namespace LaswitchTech\coreConfigurator;
 
 // Import additionnal classes into the global namespace
 use Exception;
+use ReflectionClass;
 
 class Configurator {
 
@@ -130,6 +131,44 @@ class Configurator {
     }
 
     /**
+     * List all configuration files.
+     *
+     * @return object $this
+     */
+    public function list($byFiles = false){
+
+        // Check if we should scan for files in the configuration directory or return the list of loaded files
+        if($byFiles){
+
+            // Scan for files in the configuration directory
+            $Files = scandir($this->RootPath . self::ConfigDir);
+
+            // Remove . and .. from the list
+            $Files = array_diff($Files, array('.', '..'));
+
+            // Only return files with the configuration extension
+            $Files = array_filter($Files, function($File){
+                return strpos($File, self::Extension) !== false;
+            });
+
+            // Remove the extension from the file names
+            $Files = array_map(function($File){
+                return str_replace(self::Extension, '', $File);
+            }, $Files);
+
+            // Convert to a standard array
+            $Files = array_values($Files);
+
+            // Return
+            return $Files;
+        } else {
+
+            // Return
+            return array_keys($this->Files);
+        }
+    }
+
+    /**
      * Set a Setting.
      *
      * @param  string  $File
@@ -175,6 +214,12 @@ class Configurator {
         return $this;
     }
 
+    public function check($File){
+
+        // Check if configuration file without loading it
+        return is_file($this->RootPath . self::ConfigDir . '/' . $File . self::Extension);
+    }
+
     /**
      * Get a Root Path.
      *
@@ -184,5 +229,36 @@ class Configurator {
 
         // Return
         return $this->RootPath;
+    }
+
+    /**
+     * Get a Class File Path.
+     *
+     * @param  string  $className
+     * @return string $filePath
+     */
+    public function path($className) {
+
+        // Check if the Composer autoload file is included
+        $autoloadPath = $this->root() . '/vendor/autoload.php';
+        if (!file_exists($autoloadPath)) {
+            throw new Exception("Composer autoload file not found.");
+        }
+
+        // Include the Composer autoload file
+        require_once $autoloadPath;
+
+        // Check if the class exists
+        if (!class_exists($className)) {
+
+            // Throw an exception
+            throw new Exception("Class $className does not exist.");
+        }
+
+        // Use ReflectionClass to get the file path
+        $reflector = new ReflectionClass($className);
+        $filePath = $reflector->getFileName();
+
+        return $filePath;
     }
 }
