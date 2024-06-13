@@ -1,6 +1,6 @@
 # Usage
 ## Initiate Configurator
-To use `coreConfigurator`, simply include the coreConfigurator.php file and create a new instance of the `Configurator` class.
+To use `Configurator`, simply include the Configurator.php file and create a new instance of the `Configurator` class.
 
 ```php
 
