@@ -131,6 +131,44 @@ class Configurator {
     }
 
     /**
+     * List all configuration files.
+     *
+     * @return object $this
+     */
+    public function list($byFiles = false){
+
+        // Check if we should scan for files in the configuration directory or return the list of loaded files
+        if($byFiles){
+
+            // Scan for files in the configuration directory
+            $Files = scandir($this->RootPath . self::ConfigDir);
+
+            // Remove . and .. from the list
+            $Files = array_diff($Files, array('.', '..'));
+
+            // Only return files with the configuration extension
+            $Files = array_filter($Files, function($File){
+                return strpos($File, self::Extension) !== false;
+            });
+
+            // Remove the extension from the file names
+            $Files = array_map(function($File){
+                return str_replace(self::Extension, '', $File);
+            }, $Files);
+
+            // Convert to a standard array
+            $Files = array_values($Files);
+
+            // Return
+            return $Files;
+        } else {
+
+            // Return
+            return array_keys($this->Files);
+        }
+    }
+
+    /**
      * Set a Setting.
      *
      * @param  string  $File
