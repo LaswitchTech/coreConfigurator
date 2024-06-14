@@ -17,6 +17,7 @@
     - [X] Dump autoload `composer dump-autoload`
     - [X] Perform initial push to GitHub
     - [X] Create `stable` branch from `dev` branch on GitHub
+    - [X] Set `stable` branch as default branch on GitHub
     - [X] Create a package on Packagist
     - [X] Create a release on GitHub
 - [X] Create the core class
