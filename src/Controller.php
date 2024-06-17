@@ -4,16 +4,14 @@
 namespace LaswitchTech\coreConfigurator;
 
 // Import additionnal class into the global namespace
-use LaswitchTech\coreConfigurator\Configurator;
 use LaswitchTech\coreBase\BaseController;
-use LaswitchTech\coreCSRF\CSRF;
 
 class Controller extends BaseController {
 
-    // Properties
-    protected $Configurator = null;
-    protected $CSRF = null;
-
+    /**
+     * Constructor
+     * @param object $Auth
+     */
 	public function __construct($Auth){
 
         // Namespace: /configurator
@@ -24,12 +22,6 @@ class Controller extends BaseController {
 		// Set the controller Authorization Policy
 		$this->Permission = false; // Set to true to require a permission for the namespace used.
 		$this->Level = 1; // Set the permission level required
-
-        // Initialize Configurator
-        $this->Configurator = new Configurator();
-
-        // Initialize CSRF
-        $this->CSRF = new CSRF();
 
 		// Call the parent constructor
 		parent::__construct($Auth);

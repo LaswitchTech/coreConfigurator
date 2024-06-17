@@ -4,15 +4,9 @@
 namespace LaswitchTech\coreConfigurator;
 
 // Import additionnal class into the global namespace
-use LaswitchTech\coreConfigurator\Configurator;
 use LaswitchTech\coreBase\BaseCommand;
 
 class Command extends BaseCommand {
-
-    /**
-     * Properties
-     */
-    protected $Configurator = null;
 
     /**
      * Constructor
