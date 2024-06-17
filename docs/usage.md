@@ -16,7 +16,7 @@ $Configurator = new Configurator();
 ```
 
 ### Methods
-`Configurator` provides the following methods to manage configuration files:
+`Configurator` provides the following methods:
 
 - [add()](methods/Configurator/add.md)
 - [check()](methods/Configurator/check.md)
@@ -44,7 +44,7 @@ $Form = new Form();
 ```
 
 ### Methods
-`Form` provides the following methods to manage configuration files:
+`Form` provides the following methods:
 
 - [get()](methods/Form/get.md)
 - [list()](methods/Form/list.md)
@@ -64,7 +64,7 @@ class ConfiguratorCommand extends Command {}
 ```
 
 ### Methods
-`Command` provides the following methods to manage configuration files:
+`Command` provides the following methods:
 
 - [setAction()](methods/Command/setAction.md)
 - [getAction()](methods/Command/getAction.md)
@@ -83,7 +83,7 @@ class ConfiguratorController extends Controller {}
 ```
 
 ### Methods
-`Controller` provides the following methods to manage configuration files:
+`Controller` provides the following methods:
 
 - [getAction()](methods/Controller/getAction.md)
 - [getRouterAction()](methods/Controller/getRouterAction.md)
