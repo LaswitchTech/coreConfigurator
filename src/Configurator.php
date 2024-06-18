@@ -17,7 +17,7 @@ class Configurator {
     private $RootPath = null;
 
     /**
-     * Create a new phpConfigurator instance.
+     * Create a new Configurator instance.
      *
      * @return object $this
      */
