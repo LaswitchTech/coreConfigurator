@@ -261,4 +261,52 @@ class Configurator {
 
         return $filePath;
     }
+
+    /**
+     * Check if the library is installed.
+     *
+     * @return bool
+     */
+    public function isInstalled(){
+
+        // Retrieve the path of this class
+        $reflector = new ReflectionClass($this);
+        $path = $reflector->getFileName();
+
+        // Retrieve the filename of this class
+        $filename = basename($path);
+
+        // Modify the path to point to the config directory
+        $path = str_replace('src/' . $filename, 'config/', $path);
+
+        // Add the requirements to the Configurator
+        $this->Configurator->add('requirements', $path . 'requirements.cfg');
+
+        // Retrieve the list of required modules
+        $modules = $this->Configurator->get('requirements','modules');
+
+        // Check if the required modules are installed
+        foreach($modules as $module){
+
+            // Check if the class exists
+            if (!class_exists($module)) {
+                return false;
+            }
+
+            // Initialize the class
+            $class = new $module();
+
+            // Check if the method exists
+            if(method_exists($class, isInstalled)){
+
+                // Check if the class is installed
+                if(!$class->isInstalled()){
+                    return false;
+                }
+            }
+        }
+
+        // Return true
+        return true;
+    }
 }
